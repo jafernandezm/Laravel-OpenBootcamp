@@ -1,0 +1,1 @@
+<a href="{{ route('myindex')}}"> Redireccionar pagina</a>
