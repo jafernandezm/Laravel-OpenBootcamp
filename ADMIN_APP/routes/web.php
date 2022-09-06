@@ -37,7 +37,7 @@ Route::middleware('authentication')->group(function(){
         //Editar
         Route::get('/edit/{id}',[UsersController::class,'edit'])->name('edit');
         //guardar
-        Route::match(['POST','PUT','PAT'],'/{id}',[UsersController::class,'save'])->name('save');
+        Route::match(['POST','PUT','PAT'],'/{id?}',[UsersController::class,'save'])->name('save');
         //DELETE
         Route::delete('/{id}',[UsersController::class,'delete'])->name('delete');
     });
@@ -49,7 +49,7 @@ Route::middleware('authentication')->group(function(){
         //Editar
         Route::get('/edit/{id}',[RolesController::class,'edit'])->name('edit');
         //guardar
-        Route::match(['POST','PUT','PAT'],'/{id}',[RolesController::class,'save'])->name('save');
+        Route::match(['POST','PUT','PAT'],'/{id?}',[RolesController::class,'save'])->name('save');
         //DELETE
         Route::delete('/{id}',[RolesController::class,'delete'])->name('delete');
     });
@@ -62,7 +62,7 @@ Route::middleware('authentication')->group(function(){
         //Editar
         Route::get('/edit/{id}',[TypesController::class,'edit'])->name('edit');
         //guardar
-        Route::match(['POST','PUT','PAT'],'/{id}',[TypesController::class,'save'])->name('save');
+        Route::match(['POST','PUT','PAT'],'/{id?}',[TypesController::class,'save'])->name('save');
         //DELETE
         Route::delete('/{id}',[TypesController::class,'delete'])->name('delete');
     });
