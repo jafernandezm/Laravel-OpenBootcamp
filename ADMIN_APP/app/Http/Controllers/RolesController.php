@@ -29,6 +29,41 @@ class RolesController extends Controller
             'roles' => $roles,
         ]);
     }
+
+    public function get(Request $request){
+        $roles=[
+            ['id'=> 1,
+            'label' =>'Normal',
+            'create_at' =>'2022-03-11 16:57:00',
+            'update_at' =>'2022-03-11 16:57:00',
+            ],
+            ['id'=> 2,
+            'label' =>'Admin',
+            'create_at' =>'2022-03-11 16:57:00',
+            'update_at' =>'2022-03-11 16:57:00',
+            ],
+            ['id'=> 3,
+            'label' =>'SuperAdmin',
+            'create_at' =>'2022-03-11 16:57:00',
+            'update_at' =>'2022-03-11 16:57:00',
+            ],
+        ];
+        $body = json_decode($request->getContent(),true);
+        
+        if(isset($body['type'])  && $body['type'] == 'Admin'){
+            $roles=   [   
+                ['label' =>'Admin',
+                'create_at' =>'2022-03-11 16:57:00',
+                'update_at' =>'2022-03-11 16:57:00',
+                ],
+            ];
+        }
+        return response()->json($roles);
+    }
+
+
+
+
     public function create(){
 
         return view('panel.roles.form',[

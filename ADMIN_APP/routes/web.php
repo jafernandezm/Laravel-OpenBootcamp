@@ -53,7 +53,7 @@ Route::middleware('authentication')->group(function(){
         //DELETE
         Route::delete('/{id}',[RolesController::class,'delete'])->name('delete');
         //probando el get
-        Route::get('/',[RolesController::class,'index'])->name('index');
+        Route::middleware('json_request')->any('/get',[RolesController::class,'get'])->name('get');
     });
 
     Route::prefix('/types')->name('types.')->group(function(){
