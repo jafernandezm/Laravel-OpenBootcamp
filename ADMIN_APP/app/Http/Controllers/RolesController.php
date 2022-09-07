@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
 class RolesController extends Controller
 {
     public function index(){
@@ -50,9 +50,19 @@ class RolesController extends Controller
          ]);
     }
     public function save(Request $request, $id= null){
+        
+        if( ($request->isMethod('POST') && $id != null) || (($request->isMethod('PUT') || $request->isMethod('PATCH')) && $id ==null)){
+            abort(403);
+        };
+        if($request->isMethod('POST'))
+            Session()->flash('message','El usuario se ha creado correctamente');
+        if($request->isMethod('PUT'))
+            Session()->flash('message','El usuario se ha actualizado correctamente');
         $input=$request->input();
-        print_r($input);
-        print_r($id);
+        //print_r($input);
+        //print_r($id);
+
+        return redirect()->route('roles.index');
     }
     public function delete($id){
         print_r($id);

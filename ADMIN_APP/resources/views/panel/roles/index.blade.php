@@ -4,7 +4,9 @@
 <form style="display: none;" id="logout" action="{{ route('logout')}}" method="POST">
     @csrf
 </form>
-
+@if( Session()->has('message') )
+  <p>{{ Session()->get('message')}}</p>  
+@endif
 <h3>Roles de usuario</h3>
 <a href="{{ route('roles.create')}}"> Crear nuevo rol</a>
 

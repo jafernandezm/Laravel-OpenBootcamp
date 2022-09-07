@@ -16,7 +16,7 @@ class Authentication
      */
     public function handle(Request $request, Closure $next)
     {   
-        if(Session::has('user'))
+        if(Session()->has('user'))
             return $next($request);
         return redirect()->route('login');
     }

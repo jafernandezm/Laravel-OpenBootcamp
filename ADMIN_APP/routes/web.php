@@ -52,6 +52,8 @@ Route::middleware('authentication')->group(function(){
         Route::match(['POST','PUT','PAT'],'/{id?}',[RolesController::class,'save'])->name('save');
         //DELETE
         Route::delete('/{id}',[RolesController::class,'delete'])->name('delete');
+        //probando el get
+        Route::get('/',[RolesController::class,'index'])->name('index');
     });
 
     Route::prefix('/types')->name('types.')->group(function(){
