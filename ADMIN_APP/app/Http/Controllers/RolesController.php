@@ -94,12 +94,13 @@ class RolesController extends Controller
         if($request->isMethod('PUT'))
             Session()->flash('message','El usuario se ha actualizado correctamente');
         $input=$request->input();
-        //print_r($input);
-        //print_r($id);
-
+    
         return redirect()->route('roles.index');
     }
     public function delete($id){
+       
+        Session()->flash('message','El usuario se ha eliminado correctamente');
+        return redirect()->route('roles.index');
         print_r($id);
     }
 

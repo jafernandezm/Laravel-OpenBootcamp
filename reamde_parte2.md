@@ -45,3 +45,55 @@ Errores de HTTP
 
 500 ->  Error en el servidor
 ```
+
+
+`Incluir cosas con`
+```php
+ejemplo pasando un parametro
+    @include('panel.roles._sections.row', [ 'row' => $r]) 
+o
+    @include('panel.roles._sections.row') 
+```
+TAMBIEN SE PUEDE PONER EL 
+```php
+    @includeWhen( $r['id'] ==1, 'panel.roles._sections.row', ['row'=>$r])
+
+```
+
+Tenemos para controlar por bases 
+```php
+    @section('header')
+        @include('panel.generals.navigation')
+    @show
+
+    @yield('main')
+
+
+    en la otra pagina 
+
+        
+    @section('header')
+
+
+    @endsection
+
+```
+
+otros tipos de uso de blade
+
+```php
+    Comprueba si existe o no , pero igual funciona 
+    @includeIf('panel.roles._sections.table',['rows' => $roles])
+
+    @includeWhen( count($roles) >4 , 'ruta' , [parametro a pasar])
+
+    @each('ruta' , $varible,'parametro')
+```
+
+
+
+
+`Inyeccion de dependencias o Service inyection`
+```php
+
+```

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
 class TypesController extends Controller
 {
+
     public function index(){
         $types=[
             ['id'=> 1,
@@ -50,11 +51,22 @@ class TypesController extends Controller
          ]);
     }
     public function save(Request $request, $id= null){
+        if( ($request->isMethod('POST') && $id != null) || (($request->isMethod('PUT') || $request->isMethod('PATCH')) && $id ==null)){
+            abort(403);
+        };
+        if($request->isMethod('POST'))
+            Session()->flash('message','El tipo se ha creado correctamente');
+        if($request->isMethod('PUT'))
+            Session()->flash('message','El tipo se ha actualizado correctamente');
         $input=$request->input();
-        print_r($input);
-        print_r($id);
+    
+        return redirect()->route('types.index');
     }
     public function delete($id){
-        print_r($id);
+        Session()->flash('message','El tipo se ha eliminado correctamente');
+        return redirect()->route('types.index');
     }
+
+
+    
 }
