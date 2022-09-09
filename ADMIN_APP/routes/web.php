@@ -19,6 +19,8 @@ use App\Http\Controllers\TypesController;
 |
 */
 
+Route::view('/example-login','welcome');
+
 Route::redirect('/','/home');
 
 Route::get('/login',[LoginController::class, 'form'])->name('login');

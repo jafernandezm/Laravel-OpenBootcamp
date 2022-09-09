@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\Blade;
+use Money\Money;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +24,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::directive('rigthnow',function(){
+            echo "ahora mismo la hora unix es :". time();
+        });
+
+        Blade::if('mailer',function($input){
+            $configdMailer= config('mail.default');
+            return $input === $configdMailer;
+        });
+
+
+        Blade::stringable('money',function(){
+            
+        });
     }
 }
