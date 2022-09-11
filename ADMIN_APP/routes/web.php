@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\TypesController;
+use App\Http\Controllers\DatabaseController;
+use App\Http\Controllers\PostsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,9 @@ use App\Http\Controllers\TypesController;
 |
 */
 
+
+Route::get('/example-database',[DatabaseController::class,'index']);
+
 Route::view('/example-login','welcome');
 
 Route::redirect('/','/home');
@@ -28,7 +33,14 @@ Route::post('/login',[LoginController::class, 'login']);
 Route::post('/logout',[LoginController::class, 'logout'])->name('logout');
 
 
+//blog
+Route::prefix('/blog')->name('blog.')->group(function(){
+    Route::get('/',[PostsController::class, 'index'])->name('index');   
+    Route::get('/feed/{format}',[PostsController::class, 'feed'])->name('feed');  
+});
 
+
+//users
 Route::middleware('authentication')->group(function(){
     Route::get('/home',[HomeController::class, 'index'])->name('home');   
     Route::prefix('/users')->name('users.')->group(function(){

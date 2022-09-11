@@ -12,7 +12,7 @@ class LoginController extends Controller
     }
     public function login(Request $resquest){
       
-        $input=$resquest->only('user', 'password');
+        $input=$resquest->only('email', 'password');
         $access=$this->_creckCredentials($input);
         if(!$access){
             Session()->flash('error','Credenciales invalidos');
@@ -30,12 +30,14 @@ class LoginController extends Controller
 
     private function _creckCredentials($input){
         $credentials=[
-            'user'=>"root",
+            'email'=>"root",
             'password'=>"root",
         ];
-        if(!isset($input['user']) || !isset($input['password']) )
+        if(!isset($input['email']) || !isset($input['password']) )
             return false;
-        $access=$credentials['user'] == $input['user'] && $credentials['password']==$input['password'];
+
+        //$acces=$this->_creckUserAndPaswword($input['email'], $input['password']);
+        $access=$credentials['email'] == $input['email'] && $credentials['password']==$input['password'];
         return $access;
     }
 

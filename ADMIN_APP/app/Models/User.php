@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function role(){
+        return $this->belongsTo(UserRole::class);
+    }
+
+
+    public function getFullnameAttribute(){
+        return $this->name . ' '.$this->lastname;
+    }
+
 }

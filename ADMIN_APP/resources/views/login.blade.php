@@ -13,9 +13,9 @@
             <form action="{{ route('login')}}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="">Usuario</label>
+                    <label for="">Correo electronico</label>
                     <p>
-                        <input class="fomr-control" type="text" name="user" placeholder="Usuario">
+                        <input class="fomr-control" type="text" name="email" placeholder="Correo electronico">
                     </p>
                 
                 </div>
