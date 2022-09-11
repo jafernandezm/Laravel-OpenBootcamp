@@ -20,17 +20,20 @@ class Post extends Model
         'user_id',
     ];
 
-
+    //para crear Custom
+    protected $appends= [
+        'custom'
+    ];
 
     public function category(){
-        return $this->belongsTo(User::class);        
+        return $this->belongsTo(Category::class);        
     }
     public function author(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     //para crear un nueva categoria 
-    public function getUserAndCategory(){
-        $this->attrinbutes['user_and_category']=$this->user_id .'-'.$this->category_id;
+    public function getCustomAttribute(){
+         return $this->user_id .'-'.$this->category_id;
     }
 }

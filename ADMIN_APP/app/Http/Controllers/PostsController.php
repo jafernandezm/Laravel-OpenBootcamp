@@ -16,7 +16,7 @@ class PostsController extends Controller
         ]);
     }
     public function feed($format){
-        $lastesPost= Post::with(['category','author'])->orderBy('created_at','desc')->limit(10)->get();
+        $lastesPost= Post::with(['category','author'])->withSum('author','id')->orderBy('created_at','desc')->limit(10)->get();
         $contentType=null;
         $response =null;
         switch($format){
